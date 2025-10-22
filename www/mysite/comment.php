@@ -5,12 +5,17 @@
 <html>
     <body>
         <?php
+            session_start();
+            $user_id_a_insertar = 'NULL';
+            if (!empty($_SESSION['user_id'])) {
+            $user_id_a_insertar = $_SESSION['user_id'];
+            }
             $juego_id = $_POST["juego_id"];
             $comentario = $_POST["Comentario"];
 
             $fecha = date("Y-m-d");
 
-            $query = "INSERT INTO tComentarios(comentario, juego_id, usuario_id, fecha) values ('". $comentario . "', '". $juego_id . "', NULL, '" . $fecha ."')";
+            $query = "INSERT INTO tComentarios(comentario, juego_id, usuario_id, fecha) values ('". $comentario . "', '". $juego_id . "', '". $user_id_a_insertar . "', '" . $fecha ."')";
             mysqli_query($db, $query) or die("Error al insertar el comentario.");
 
             echo "<p>Nuevo comentario ";
