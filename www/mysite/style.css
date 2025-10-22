@@ -48,3 +48,12 @@ article p:first-child {
     font-weight: bold;
     text-decoration: underline;
 }
+
+#logout{
+    margin-right: 20px;
+    color: red;
+    font-weight: bold;
+    display: block;
+    font-size: 20px;
+    text-align: right;
+}

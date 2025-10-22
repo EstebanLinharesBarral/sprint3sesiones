@@ -38,3 +38,12 @@ a {
     padding-right: 50px;
     margin-bottom: 50px;
 }
+
+#logout{
+    margin-right: 20px;
+    color: red;
+    font-weight: bold;
+    display: block;
+    font-size: 20px;
+    text-align: right;
+}

@@ -17,6 +17,7 @@
         while($juego = mysqli_fetch_array($resultJuego)) {
             echo "<section>";
             echo "<h1>" . $juego["nombre"] . "</h1>";
+            echo "<a id='logout' href='/logout.php'>Logout</a>";
             echo "<figure ><img src='" . $juego["url_imagen"] . "' alt ='" . $juego["nombre"] . "'></figure>";
             echo "<article><h3>Género</h3>";
             echo "<p>" . $juego["genero"] . "</p></article>";
