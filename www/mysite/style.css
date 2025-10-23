@@ -57,3 +57,11 @@ article p:first-child {
     font-size: 20px;
     text-align: right;
 }
+#change{
+    margin-right: 20px;
+    color: red;
+    font-weight: bold;
+    display: block;
+    font-size: 15px;
+    text-align: right;
+}

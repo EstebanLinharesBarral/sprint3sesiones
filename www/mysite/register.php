@@ -9,6 +9,7 @@
         $pswd = $_POST["contraseña"] ?? '';
         $pswd2 = $_POST["contraseña2"] ?? '';
         $name = $_POST["nombre"] ?? '';
+        $apellidos = $_POST["apellidos"] ?? '';
 
         $db = mysqli_connect("localhost", "root", "1234", "mysitedb") or die ("Fail");
         $email_safe = mysqli_real_escape_string($db, $email);
@@ -17,7 +18,7 @@
 
         /*COMPROBACIONES*/
         $correcto = true;
-        if($pswd != $pswd2 || $email == "" || $pswd == "" || $pswd2 == "" || $name == ""){
+        if($pswd != $pswd2 || $email == "" || $pswd == "" || $pswd2 == "" || $name == "" || $apellidos == ""){
             $correcto = false;
         }
 
@@ -27,7 +28,7 @@
 
         /*INSERCIÓN*/
         if($correcto) {
-            $insert = "INSERT INTO tUsuarios(nombre, email, contraseña) VALUES ('".$name."', '".$email_safe."', '".password_hash($pswd, PASSWORD_DEFAULT)."')";
+            $insert = "INSERT INTO tUsuarios(nombre, apellidos, email, contraseña) VALUES ('".$name."', '".$apellidos."', '".$email_safe."', '".password_hash($pswd, PASSWORD_DEFAULT)."')";
             mysqli_query($db, $insert) or die ("Error al insertar datos");
             header("Location: /main.php");
             exit;

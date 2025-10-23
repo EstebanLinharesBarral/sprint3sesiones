@@ -12,6 +12,7 @@
 <body>
     <h1>Mis juegos favoritos</h1>
     <a id="logout" href="/logout.php">Logout</a>
+    <a id="change" href="/passChange.html">Cambiar contraseña</a>
     <section>
         <?php 
             $query = "Select * from tJuegos";
