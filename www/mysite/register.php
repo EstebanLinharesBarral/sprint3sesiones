@@ -12,8 +12,7 @@
         $apellidos = $_POST["apellidos"] ?? '';
 
         $db = mysqli_connect("localhost", "root", "1234", "mysitedb") or die ("Fail");
-        $email_safe = mysqli_real_escape_string($db, $email);
-        $query = "SELECT email FROM tUsuarios WHERE email= '". $email_safe . "'";
+        $query = "SELECT email FROM tUsuarios WHERE email= '". $email . "'";
         $userRes = mysqli_query($db, $query) or die("Error en la consulta.");
 
         /*COMPROBACIONES*/
@@ -28,8 +27,11 @@
 
         /*INSERCIÓN*/
         if($correcto) {
-            $insert = "INSERT INTO tUsuarios(nombre, apellidos, email, contraseña) VALUES ('".$name."', '".$apellidos."', '".$email_safe."', '".password_hash($pswd, PASSWORD_DEFAULT)."')";
-            mysqli_query($db, $insert) or die ("Error al insertar datos");
+        $passHash = password_hash($pswd, PASSWORD_DEFAULT);
+        $insert = $db->prepare("INSERT INTO tUsuarios (nombre, apellidos, email, contraseña) VALUES (?, ?, ?, ?)");
+        $insert -> bind_param("ssss", $name, $apellidos, $email, $passHash);
+        $insert -> execute();
+        $insert -> close();
             header("Location: /main.php");
             exit;
         } else {

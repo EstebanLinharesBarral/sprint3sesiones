@@ -24,7 +24,11 @@
         }
 
         if($correcto){
-            $update = "update tUsuarios set contraseña='" . password_hash($nueva, PASSWORD_DEFAULT) . "' where id='" . $id . "'";
+            $passHash= password_hash($nueva, PASSWORD_DEFAULT);
+            $update = $db->prepare("update tUsuarios set contraseña= ? where id= ? ");
+            $update->bind_param("si", $passHash, $id);
+            $update->execute();
+            $update->close();
             mysqli_query($db, $update) or die("Error al cambiar la contraseña");
             header("Location: /main.php");
             exit();
